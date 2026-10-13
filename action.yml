@@ -1,0 +1,29 @@
+name: Repository Autopilot
+description: Audit repositories, triage pull requests, and create GitHub-native maintenance reports.
+author: Aniruddha Salve
+branding:
+  icon: shield
+  color: blue
+inputs:
+  mode:
+    description: report, enforce, or pull_request
+    required: false
+    default: report
+  config:
+    description: Path to optional autopilot YAML configuration
+    required: false
+    default: .github/repository-autopilot.yml
+  fail-under:
+    description: Fail the check below this health score
+    required: false
+    default: "0"
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+    - --mode
+    - ${{ inputs.mode }}
+    - --config
+    - ${{ inputs.config }}
+    - --fail-under
+    - ${{ inputs.fail-under }}

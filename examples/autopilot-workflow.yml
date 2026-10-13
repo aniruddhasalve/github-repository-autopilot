@@ -1,0 +1,19 @@
+name: Repository Autopilot
+on:
+  pull_request:
+  schedule:
+    - cron: '0 9 * * 1'
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+jobs:
+  autopilot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aniruddhasalve/github-repository-autopilot@v1
+        with:
+          mode: pull_request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

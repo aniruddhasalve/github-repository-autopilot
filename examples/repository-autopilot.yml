@@ -1,0 +1,10 @@
+version: 1
+mode: report
+files:
+  required: [README.md, LICENSE, CONTRIBUTING.md, SECURITY.md]
+maintenance:
+  create_weekly_report: true
+pull_requests:
+  risk_score: true
+  detect_missing_tests: true
+  detect_migrations: true
